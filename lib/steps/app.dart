@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two_columns/steps/two_pane1.dart';
+import 'package:two_columns/steps/two_columns1.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,27 +7,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ValueNotifier<bool> _showPane2Content = ValueNotifier(false);
-  void _toggleSide() => _showPane2Content.value = !_showPane2Content.value;
   ValueNotifier<int?> _selected = ValueNotifier(null);
+
   void _selectValue(int? val) => _selected.value = val;
   void _clearSelected() => _selected.value = null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home page'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: IconButton(
-              onPressed: _toggleSide,
-              icon: Icon(Icons.menu),
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text('Home page')),
       body: ValueListenableBuilder(
         builder: (context, _, child) {
           return TwoColumns(

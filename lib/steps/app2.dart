@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two_columns/steps/two_pane2.dart';
+import 'package:two_columns/steps/two_columns2.dart';
 
 class HomePage extends StatefulWidget {
   @override
