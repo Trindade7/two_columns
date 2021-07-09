@@ -5,9 +5,7 @@ void main() {
   runApp(MaterialApp(
     title: 'Flutter Demo',
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-    ),
+    theme: ThemeData(primarySwatch: Colors.blue),
     home: HomePage(),
   ));
 }
@@ -28,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[300],
       appBar: AppBar(title: Text('Home page')),
       body: ValueListenableBuilder(
         builder: (context, _, child) {

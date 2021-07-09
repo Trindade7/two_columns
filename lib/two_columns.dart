@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 class TwoColumns extends StatefulWidget {
   final Widget pane1;
   final Widget pane2;
+  final Widget? pane2PopupPage;
 
   /// keeps track of the pane2 open state
   final bool showPane2;
@@ -27,6 +28,7 @@ class TwoColumns extends StatefulWidget {
     required this.onClosePane2Popup,
     this.breakpoint = 800,
     this.paneProportion = 70,
+    this.pane2PopupPage,
   }) : super(key: key);
 
   @override
@@ -40,6 +42,8 @@ class _TwoColumnsState extends State<TwoColumns> {
       widget.breakpoint < MediaQuery.of(context).size.width;
 
   /// Loads and removes the popup page for pane2 on small screens
+  ///
+  /// returns pane2PopupPage if provided othewise a `Scaffold` with `pane2` as it's body
   void loadPane2Page(BuildContext context) async {
     if (widget.showPane2 && _popupNotOpen) {
       _popupNotOpen = false;
@@ -49,8 +53,10 @@ class _TwoColumnsState extends State<TwoColumns> {
             .push<Null>(
           new MaterialPageRoute<Null>(
             builder: (BuildContext context) {
+              if (widget.pane2PopupPage != null) return widget.pane2PopupPage!;
               return new Scaffold(
-                appBar: AppBar(title: Text('hello')),
+                backgroundColor: Colors.blueGrey[300],
+                appBar: AppBar(title: Text('Details')),
                 body: widget.pane2,
               );
             },
